@@ -1,0 +1,16 @@
+{
+  "name": "SenchaNativePackagerChecklist",
+  "version": "1.0.0",
+  "description": "Simple Module to test all dependencies for Sencha Native Cordova/Phonegap Packaging",
+  "main": "index.js",
+  "author": "Ross Gerbasi",
+  "scripts": {
+    "debug": "node --debug-brk index.js",
+    "checklist": "node index.js"
+  },
+  "dependencies": {
+    "classjs": "^0.8.0",
+    "q": "^1.0.1",
+    "colors": "^0.6.2"
+  }
+}
