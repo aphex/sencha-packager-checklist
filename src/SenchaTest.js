@@ -23,6 +23,7 @@ It is also the command line tool that powers native cordova & phonegap integrati
         function(error, stdout, stderr) {
           var success = error === null,
             result = new TestResult(success, me.getName());
+          result.setInstructions(me.getInstructions());
           if (success) {
             result.setMessage("Sencha CMD version " + stdout.replace(/[\n\r]/, ' found in ').replace(/[\n\r]/g, ''))
           } else {

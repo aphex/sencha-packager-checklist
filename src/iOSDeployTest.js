@@ -32,6 +32,7 @@ You may need to run this with Root permissions to do so run the command\n".grey 
         function(error, stdout, stderr) {
           var success = error === null || (error && error.code === 253),
             result = new TestResult(success, me.getName());
+          result.setInstructions(me.getInstructions());
           if (success) {
             result.setMessage('ios-deploy version ' + stdout.replace(/[\n\r]/g, '') + ' was found.')
           } else {

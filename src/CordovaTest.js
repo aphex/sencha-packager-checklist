@@ -25,11 +25,11 @@ If you are on OSX you may need to run this with Root permissions to do so run th
         function(error, stdout, stderr) {
           var success = error === null,
             result = new TestResult(success, me.getName());
+          result.setInstructions(me.getInstructions());
           if (success) {
             result.setMessage("Cordova version " + stdout.replace(/[\n\r]/g, '') + " was found.")
           } else {
             result.setMessage("Unable to locate cordova in your path");
-            result.setInstructions(me.getInstructions());
           }
           deferred.resolve(result)
         }

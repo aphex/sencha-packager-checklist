@@ -16,7 +16,7 @@ module.exports = Class.define("PhonegapTest", {
       return "Phonegap CLI can be installed as a node module. Run the following command from your \
 Command Prompt or Terminal window.\n".grey +
         "npm install -g phonegap".cyan +
-        "\n\n If you are on OSX you may need to run this with Root permissions to do so run the command\n".grey + 
+        "\n\n If you are on OSX you may need to run this with Root permissions to do so run the command\n".grey +
         "sudo npm install -g phonegap".cyan + "\n\nYou will then be prompted for your root password.\n\n".grey +
         "For more information go to ".grey + "https://github.com/phonegap/phonegap-cli".blue + " or see ".grey + "http://docs.phonegap.com/".blue;
     },
@@ -26,6 +26,7 @@ Command Prompt or Terminal window.\n".grey +
         function(error, stdout, stderr) {
           var success = error === null,
             result = new TestResult(success, me.getName());
+          result.setInstructions(me.getInstructions());
           if (success) {
             result.setMessage("Phonegap version " + stdout.replace(/[\n\r]/g, '') + " was found.")
           } else {

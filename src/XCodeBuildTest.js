@@ -33,6 +33,7 @@ Once installed you now must add the command line tools. Do this by opening a ter
         function(error, stdout, stderr) {
           var success = error === null,
             result = new TestResult(success, me.getName());
+          result.setInstructions(me.getInstructions());
           if (success) {
             result.setMessage('xcodebuild found with ' + stdout.replace(/[\n\r]/, ' at ').replace(/[\n\r]/g, '') + '.')
           } else {
