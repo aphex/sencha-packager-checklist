@@ -11,7 +11,21 @@ var Class = require('classjs'),
   iOSDeployTest = require('./iOSDeployTest.js'),
   ADBTest = require('./ADBTest.js'),
   XCodeBuildTest = require('./XCodeBuildTest.js'),
-  tests = [SenchaTest, CordovaTest, PhonegapTest, XCodeBuildTest, iOSSimTest, iOSDeployTest, ADBTest];
+  AntTest = require('./AntTest.js'),
+  RubyTest = require('./RubyTest.js'),
+  JavaTest = require('./JavaTest.js'),
+  tests = [
+    JavaTest,
+    RubyTest,
+    SenchaTest,
+    CordovaTest,
+    PhonegapTest,
+    XCodeBuildTest,
+    iOSSimTest,
+    iOSDeployTest,
+    AntTest,
+    ADBTest
+  ];
 
 
 module.exports = Class.define("TestRunner", {
@@ -52,7 +66,7 @@ module.exports = Class.define("TestRunner", {
   },
   members: {
     run: function(forceFail) {
-      if(forceFail) this.setForceFail(true);
+      if (forceFail) this.setForceFail(true);
       this.next()
     },
 
@@ -70,8 +84,13 @@ module.exports = Class.define("TestRunner", {
           result.then(this.onTestComplete.bind(this));
         }
       } else {
-        console.log(seperator);
+        console.log(this.getSeperator());
         console.log('Tests Completed.');
+        var totalTests = this.getTotalTests(),
+          passed = this.getPassed(),
+          skipped = this.getSkipped(),
+          failed = this.getFailed();
+
         if (passed > 0) {
           console.log((passed + "/" + totalTests + " passed. ").green);
         }
@@ -83,7 +102,7 @@ module.exports = Class.define("TestRunner", {
         if (failed > 0) {
           console.log((failed + "/" + totalTests + " failed. ").red);
         }
-        console.log(seperator);
+        console.log(this.getSeperator());
       }
     },
 
